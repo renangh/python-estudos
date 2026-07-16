@@ -7,7 +7,7 @@ A ideia é documentar minha jornada de aprendizado e mostrar exemplos práticos 
 
 ## Estrutura
 - **exercicios_python/** → scripts de treino
-  - `gerenciamento_de_tarefas.py` → programa de lista de tarefas com opções de adicionar, listar, concluir e remover.
+  - `gerenciamento_de_tarefas.py` → “Este exercício foi feito em duas etapas: primeiro implementei a versão básica, depois evoluí para incluir status de tarefas (‘Pendente’ e ‘Concluída’).”
   - `primeiro.py` → primeiros testes e exercícios básicos em Python.
 - **README.md** → documentação principal do repositório.
 

@@ -7,40 +7,46 @@
 # 4 → Remover uma tarefa
 # 5 → Sair
 
-tarefas = []
+tarefas = []  # cada tarefa é um dicionário {"texto": ..., "status": ...}
+
 while True:
     print('Escolha uma opção')
-    menu = input('[a]dicionar [l]istar [c]oncluir [r]emover [s]air: ').lower()
+    menu = input('[a]dicionar [l]istar [c]concluir [r]emover [s]air: ').lower()
+
     if menu == 'a':
         adicionar = input('Adicione uma tarefa: ')
-        tarefas.append(adicionar)
-        print(f'Voce adicionou "{adicionar}" a sua lista de tarefas.')
-        print(f'Lista atualizada: {tarefas}')
+        tarefas.append({"texto": adicionar, "status": "Pendente"})  # >>>> **** ALTERAÇÃO **** adiciona com status
+        print(f'Você adicionou "{adicionar}" à sua lista de tarefas.')
+
     if menu == 'l':
         print('Tarefas atuais')
         for i, t in enumerate(tarefas, start=1):
-            print(f'{i}. {t}')
+            print(f'{i}. {t["texto"]} - {t["status"]}')  # >>>> **** ALTERAÇÃO **** mostra status
+
     if menu == 'c':
         if not tarefas:
-            print('Nao ha tarefas para concluir.')
+            print('Não há tarefas para concluir.')
         else:
             for i, t in enumerate(tarefas, start=1):
-                print(f'{i}. {t}')
+                print(f'{i}. {t["texto"]} - {t["status"]}')
             try:
-                concluir = int(input('Digite o numero da tarefa: '))
-                concluida = tarefas.pop(concluir - 1)
-                print(f'Voce concluiu a tarefa "{concluida}".')
-                print(f'Tarefas restantes: {tarefas}')
+                concluir = int(input('Digite o número da tarefa: '))
+                tarefas[concluir - 1]["status"] = "Concluída"  # >>>> **** ALTERAÇÃO **** só muda status
+                print(f'Tarefa "{tarefas[concluir - 1]["texto"]}" marcada como concluída.')
             except (ValueError, IndexError):
-                print('Numero invalido. Tente novamente.')
+                print('Número inválido. Tente novamente.')
+
     if menu == 'r':
         print('Escolha uma tarefa para remover:')
         for i, t in enumerate(tarefas, start=1):
-            print(f'{i}. {t}')
-        remover = int(input('Digite o numero da tarefa: '))
-        removida = tarefas.pop(remover - 1)
-        print(f'Voce removeu a tarefa "{removida}"')
-        print(f'Lista atualizada: {tarefas}')
+            print(f'{i}. {t["texto"]} - {t["status"]}')
+        try:
+            remover = int(input('Digite o número da tarefa: '))
+            removida = tarefas.pop(remover - 1)  # >>>> **** ALTERAÇÃO **** remove só o índice escolhido
+            print(f'Você removeu a tarefa "{removida["texto"]}".')
+        except (ValueError, IndexError):
+            print('Número inválido. Tente novamente.')
+
     if menu == 's':
-        print('Voce saiu do program de tarefas!!')
+        print('Você saiu do programa de tarefas!!')
         break
